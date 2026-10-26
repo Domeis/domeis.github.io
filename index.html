@@ -208,14 +208,17 @@
     <section id="contact">
         <h1>Get in touch!</h1>
         <div class="contact_Container">
-           <form action="https://api.slapform.com/mNsmZd8rv" method="POST">
-         <label>Name</label>
-         <input type="text" name="el_mvpjnmko_q1vzxmth7">
-         <label>Email Address</label>
-        <input type="email" name="email">
-        <label>Message</label>
-         <textarea name="el_mvpjt98w_kak30elne" style="height:200px"></textarea>
-         <button type="submit" style="padding: 0.5rem;">Send</button>
+            <form method="POST" action="https://api.slapform.com/mNsmZd8rv">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Name">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="usermail" placeholder="Email">
+
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Message" style="height:200px"></textarea>
+
+                <input type="submit" value="Send">
             </form>
             <p class="rabbit-hole-text" style="cursor: pointer;" title="Click to enter">Go down the rabbit hole...</p>
         </div>
