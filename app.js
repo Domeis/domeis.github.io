@@ -28,35 +28,9 @@ tl.fromTo("#about .about_me", { y: "10%", opacity: 0 }, { x: "0%", opacity: 1, d
 tl.fromTo("#about .my_description", { y: "10%", opacity: 0 }, { y: "0%", opacity: 1, duration: 0.65 });
 tl.fromTo(".profile-image", { y: "10%", opacity: 0 }, { y: "0%", opacity: 1, duration: 0.75 });
 
-// --- SHARED GLOBALS & CONTROLLERS ---
-let isSnapping = false;
-let isExitingTunnel = false;
-let phaseTL = null;
-let projectsSec = null;
-
-function snapScrollTo(targetY, callback) {
-  if (isSnapping) return;
-  isSnapping = true;
-
-  gsap.to(window, {
-    scrollTo: targetY,
-    duration: 0.75,
-    ease: "power2.inOut",
-    overwrite: "auto",
-    onComplete: () => {
-      setTimeout(() => {
-        isSnapping = false;
-        if (callback) callback();
-      }, 100);
-    }
-  });
-}
-
 // --- DYNAMIC PASTEL MESH TIMELINE FOR PHASES ---
 document.addEventListener('DOMContentLoaded', () => {
-    if (!document.getElementById('home')) return;
-    
-  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+  gsap.registerPlugin(ScrollTrigger);
 
   const phaseCards = [
     document.getElementById('phase-0'),
@@ -70,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const bgColor = document.querySelector('.phase-bg-color');
   const orb1 = document.querySelector('.phase-orb-1');
   const orb2 = document.querySelector('.phase-orb-2');
-  projectsSec = document.getElementById('projects');
 
   const phaseAccents = [
     '#ea580c', // Phase 1: Warm Apricot / Peach
@@ -112,87 +85,71 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Phase Timeline pinned on #home
-// --- TIMELINE WITH CLEAN HOLD STAGES ---
-  phaseTL = gsap.timeline({
+  // Tightened pin distance (+=2300) removes sluggish scrolling
+  const phaseTL = gsap.timeline({
     scrollTrigger: {
       trigger: "#home",
       start: "top top",
-      end: "+=2400",
+      end: "+=2300",
       pin: true,
       scrub: 0.4,
       anticipatePin: 1,
       onUpdate: (self) => {
-        const p = self.progress;
-        let step = 0;
-        if (p >= 0.68) step = 3;
-        else if (p >= 0.44) step = 2;
-        else if (p >= 0.20) step = 1;
+        const step = Math.min(3, Math.floor(self.progress * 4));
         updateTimelineNav(step);
       }
     }
   });
 
   // Initial State: Seamless with About gradient
-  gsap.set(phaseCards[0], { autoAlpha: 1, y: 0 });
-  gsap.set([phaseCards[1], phaseCards[2], phaseCards[3]], { autoAlpha: 0, y: 20 });
+  gsap.set(phaseCards[0], { opacity: 1, visibility: 'visible', y: 0 });
+  gsap.set([phaseCards[1], phaseCards[2], phaseCards[3]], { opacity: 0, visibility: 'hidden', y: 25 });
   gsap.set(bgColor, { opacity: 0, backgroundColor: 'transparent' });
   gsap.set(orb1, { backgroundColor: 'rgba(254, 215, 170, 0.45)', opacity: 0.35 });
   gsap.set(orb2, { backgroundColor: 'rgba(224, 231, 255, 0.35)', opacity: 0.3 });
   
   updateTimelineNav(0);
 
-  // Label 1: Growth hold
-  phaseTL.addLabel('phase1', 0.2);
+  // Phase 0 -> Phase 1 (Growth -> Realization: Sky Blue blooms)
+  phaseTL.to(phaseCards[0], { opacity: 0, y: -20, duration: 1.0, ease: 'power1.inOut' }, 1.0)
+         .set(phaseCards[0], { visibility: 'hidden' })
+         .set(phaseCards[1], { visibility: 'visible' })
+         .to(phaseCards[1], { opacity: 1, y: 0, duration: 1.0, ease: 'power1.inOut' }, 1.2)
+         .to(bgColor, { opacity: 1, backgroundColor: '#f0f7ff', duration: 1.2, ease: 'power1.inOut' }, 1.0)
+         .to(orb1, { backgroundColor: 'rgba(186, 230, 253, 0.7)', opacity: 0.65, duration: 1.2, ease: 'power1.inOut' }, 1.0)
+         .to(orb2, { backgroundColor: 'rgba(199, 210, 254, 0.6)', opacity: 0.55, duration: 1.2, ease: 'power1.inOut' }, 1.0);
 
-  // Phase 0 -> Phase 1 (Growth -> Realization: Sky Blue)
-  phaseTL.to(phaseCards[0], { autoAlpha: 0, y: -20, duration: 0.8, ease: 'power1.inOut' }, 1.0)
-         .to(phaseCards[1], { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power1.inOut' }, 1.2)
-         .to(bgColor, { opacity: 1, backgroundColor: '#f0f7ff', duration: 1.0, ease: 'power1.inOut' }, 1.0)
-         .to(orb1, { backgroundColor: 'rgba(186, 230, 253, 0.7)', opacity: 0.65, duration: 1.0, ease: 'power1.inOut' }, 1.0)
-         .to(orb2, { backgroundColor: 'rgba(199, 210, 254, 0.6)', opacity: 0.55, duration: 1.0, ease: 'power1.inOut' }, 1.0);
-
-  // Label 2: Realization hold
-  phaseTL.addLabel('phase2', 2.2);
-
-  // Phase 1 -> Phase 2 (Realization -> Longing: Lavender)
-  phaseTL.to(phaseCards[1], { autoAlpha: 0, y: -20, duration: 0.8, ease: 'power1.inOut' }, 2.8)
-         .to(phaseCards[2], { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power1.inOut' }, 3.0)
-         .to(bgColor, { backgroundColor: '#faf5ff', duration: 1.0, ease: 'power1.inOut' }, 2.8)
-         .to(orb1, { backgroundColor: 'rgba(233, 213, 255, 0.7)', opacity: 0.65, duration: 1.0, ease: 'power1.inOut' }, 2.8)
-         .to(orb2, { backgroundColor: 'rgba(251, 207, 232, 0.55)', opacity: 0.5, duration: 1.0, ease: 'power1.inOut' }, 2.8);
-
-  // Label 3: Longing hold
-  phaseTL.addLabel('phase3', 4.0);
+  // Phase 1 -> Phase 2 (Realization -> Longing: Lavender & Rose mist)
+  phaseTL.to(phaseCards[1], { opacity: 0, y: -20, duration: 1.0, ease: 'power1.inOut' }, 3.0)
+         .set(phaseCards[1], { visibility: 'hidden' })
+         .set(phaseCards[2], { visibility: 'visible' })
+         .to(phaseCards[2], { opacity: 1, y: 0, duration: 1.0, ease: 'power1.inOut' }, 3.2)
+         .to(bgColor, { backgroundColor: '#faf5ff', duration: 1.2, ease: 'power1.inOut' }, 3.0)
+         .to(orb1, { backgroundColor: 'rgba(233, 213, 255, 0.7)', opacity: 0.65, duration: 1.2, ease: 'power1.inOut' }, 3.0)
+         .to(orb2, { backgroundColor: 'rgba(251, 207, 232, 0.55)', opacity: 0.5, duration: 1.2, ease: 'power1.inOut' }, 3.0);
 
   // Phase 2 -> Phase 3 (Longing -> New Horizon: Aurora Mint)
-  phaseTL.to(phaseCards[2], { autoAlpha: 0, y: -20, duration: 0.8, ease: 'power1.inOut' }, 4.6)
-         .to(phaseCards[3], { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power1.inOut' }, 4.8)
-         .to(bgColor, { backgroundColor: '#f0fdf9', duration: 1.0, ease: 'power1.inOut' }, 4.6)
-         .to(orb1, { backgroundColor: 'rgba(167, 243, 208, 0.65)', opacity: 0.6, duration: 1.0, ease: 'power1.inOut' }, 4.6)
-         .to(orb2, { backgroundColor: 'rgba(186, 230, 253, 0.55)', opacity: 0.5, duration: 1.0, ease: 'power1.inOut' }, 4.6);
+  phaseTL.to(phaseCards[2], { opacity: 0, y: -20, duration: 1.0, ease: 'power1.inOut' }, 5.0)
+         .set(phaseCards[2], { visibility: 'hidden' })
+         .set(phaseCards[3], { visibility: 'visible' })
+         .to(phaseCards[3], { opacity: 1, y: 0, duration: 1.0, ease: 'power1.inOut' }, 5.2)
+         .to(bgColor, { backgroundColor: '#f0fdf9', duration: 1.2, ease: 'power1.inOut' }, 5.0)
+         .to(orb1, { backgroundColor: 'rgba(167, 243, 208, 0.65)', opacity: 0.6, duration: 1.2, ease: 'power1.inOut' }, 5.0)
+         .to(orb2, { backgroundColor: 'rgba(186, 230, 253, 0.55)', opacity: 0.5, duration: 1.2, ease: 'power1.inOut' }, 5.0);
 
-  // Label 4: Phase 4 in 100% full view (Phase 3 is 100% hidden)
-  phaseTL.addLabel('phase4', 5.8);
+  // Phase 4 Exit directly into Featured Works
+  phaseTL.to(phaseCards[3], { opacity: 0, y: -20, duration: 0.9, ease: 'power1.inOut' }, 6.4)
+         .to(timelineNav, { opacity: 0, y: -15, duration: 0.7, ease: 'power1.inOut' }, 6.4)
+         .to(bgColor, { backgroundColor: 'rgb(18, 18, 18)', duration: 0.9, ease: 'power1.inOut' }, 6.4)
+         .to([orb1, orb2], { opacity: 0, duration: 0.7, ease: 'power1.inOut' }, 6.4);
 
-  // Phase 4 Reading Hold
-  phaseTL.to({}, { duration: 1.2 });
-
-  // Phase 4 Exit -> Smooth Background Color Morph into Featured Works (rgb(44, 44, 44))
-  phaseTL.to(phaseCards[3], { autoAlpha: 0, y: -20, duration: 0.8, ease: 'power1.inOut' }, 6.8)
-         .to(timelineNav, { autoAlpha: 0, y: -15, duration: 0.6, ease: 'power1.inOut' }, 6.8)
-         .to(bgColor, { backgroundColor: 'rgb(44, 44, 44)', duration: 0.9, ease: 'power1.inOut' }, 6.8)
-         .to([orb1, orb2], { autoAlpha: 0, duration: 0.6, ease: 'power1.inOut' }, 6.8);
-
-  // Navigation Click Behavior (Uses exact labels)
-  const phaseLabels = ['phase1', 'phase2', 'phase3', 'phase4'];
+  // Clickable Navigation
   navItems.forEach((item, index) => {
     item.addEventListener('click', () => {
       const st = phaseTL.scrollTrigger;
       if (!st) return;
-      const labelTime = phaseTL.labels[phaseLabels[index]];
-      const targetScroll = st.start + (st.end - st.start) * (labelTime / phaseTL.duration());
-      snapScrollTo(targetScroll);
+      const targetScroll = st.start + (st.end - st.start) * (index / 3.4);
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
     });
   });
 
@@ -224,7 +181,7 @@ function playYouTubeVideo(iframeElement) {
   }
 }
 
-// --- SPACE FALL TIMELINE (7-Prop Recalibrated Dynamic Flow) ---
+// --- SPACE FALL TIMELINE (8-Prop Dynamic Flow) ---
 let fallTL = null;
 let yt1Active = false;
 let yt2Active = false;
@@ -238,20 +195,20 @@ function buildSpaceFallTimeline() {
 
   fallTL = gsap.timeline({ paused: true, defaults: { ease: "none" } });
 
-  // 1. Atmosphere Shifts (Across 49s total timeline)
+  // 1. Atmosphere Shifts (Across 56s total timeline)
   fallTL.fromTo('.tunnel-bg-tint',
     { backgroundColor: 'rgba(0, 0, 0, 0)' },
-    { backgroundColor: 'rgba(255, 110, 0, 0.65)', duration: 3.5 },
+    { backgroundColor: 'rgba(255, 110, 0, 0.65)', duration: 4.0 },
     0
   );
-  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(0, 149, 255, 0.65)', duration: 4.5 }, 6.5);
-  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(236, 72, 153, 0.65)', duration: 4.5 }, 13.5);
-  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(16, 185, 129, 0.65)', duration: 5.0 }, 20.0);
-  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(147, 51, 234, 0.65)', duration: 5.0 }, 27.0);
-  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(59, 130, 246, 0.65)', duration: 5.0 }, 34.0);
-  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(0, 0, 0, 0)', duration: 4.0 }, 42.0);
+  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(0, 149, 255, 0.65)', duration: 5.0 }, 7.0);
+  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(236, 72, 153, 0.65)', duration: 5.0 }, 15.0);
+  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(16, 185, 129, 0.65)', duration: 6.0 }, 24.0);
+  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(147, 51, 234, 0.65)', duration: 6.0 }, 34.0);
+  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(59, 130, 246, 0.65)', duration: 5.0 }, 44.0);
+  fallTL.to('.tunnel-bg-tint', { backgroundColor: 'rgba(0, 0, 0, 0)', duration: 4.0 }, 52.0);
 
-  // --- PROPS TIMELINE (Continuous Spotlight Handoff) ---
+  // --- PROPS TIMELINE ---
 
   // 1. Prop 1: Clock (0s -> 8.0s)
   fallTL.fromTo('.prop-clock',
@@ -325,69 +282,87 @@ function buildSpaceFallTimeline() {
     27.0
   );
 
-  // 5. Prop 5: Okay (23.5s -> 35.0s) - Takes spotlight at 27.0s
-  fallTL.fromTo('.prop-potion',
-    { xPercent: -50, yPercent: -50, x: '-16vw', y: '35vh', scale: 0.15, opacity: 0, zIndex: 10 },
+  // 5. Prop 5: Instagram Reel (23.5s -> 35.5s)
+  fallTL.fromTo('.prop-insta',
+    { xPercent: -50, yPercent: -50, x: '-16vw', y: '35vh', scale: 0.15, opacity: 0, zIndex: 10, pointerEvents: 'none' },
     { xPercent: -50, yPercent: -50, x: '-12vw', y: '20vh', scale: 0.45, opacity: 0.65, duration: 3.5, ease: 'sine.out' },
     23.5
   );
-  fallTL.to('.prop-potion',
-    { xPercent: -50, yPercent: -50, x: '0vw', y: '0vh', scale: 1.0, opacity: 1, zIndex: 30, duration: 1.5, ease: 'power2.out' },
+  fallTL.to('.prop-insta',
+    { xPercent: -50, yPercent: -50, x: '0vw', y: '0vh', scale: 1.0, opacity: 1, zIndex: 30, duration: 1.5, ease: 'power2.out', pointerEvents: 'auto' },
     27.0
   );
-  fallTL.to('.prop-potion',
-    { xPercent: -50, yPercent: -50, x: '1.5vw', y: '-2vh', scale: 1.03, duration: 5.0, ease: 'sine.inOut' },
+  fallTL.to('.prop-insta',
+    { xPercent: -50, yPercent: -50, x: '1vw', y: '-2vh', scale: 1.03, duration: 5.5, ease: 'sine.inOut', pointerEvents: 'auto' },
     28.5
+  );
+  fallTL.to('.prop-insta',
+    { xPercent: -50, yPercent: -50, x: '0vw', y: '-55vh', scale: 1.8, opacity: 0, duration: 1.5, ease: 'power1.in', pointerEvents: 'none' },
+    34.0
+  );
+
+  // 6. Prop 6: Okay (30.5s -> 42.0s)
+  fallTL.fromTo('.prop-potion',
+    { xPercent: -50, yPercent: -50, x: '16vw', y: '35vh', scale: 0.15, opacity: 0, zIndex: 10 },
+    { xPercent: -50, yPercent: -50, x: '12vw', y: '20vh', scale: 0.45, opacity: 0.65, duration: 3.5, ease: 'sine.out' },
+    30.5
+  );
+  fallTL.to('.prop-potion',
+    { xPercent: -50, yPercent: -50, x: '0vw', y: '0vh', scale: 1.0, opacity: 1, zIndex: 30, duration: 1.5, ease: 'power2.out' },
+    34.0
+  );
+  fallTL.to('.prop-potion',
+    { xPercent: -50, yPercent: -50, x: '-1.5vw', y: '2vh', scale: 1.03, duration: 5.0, ease: 'sine.inOut' },
+    35.5
   );
   fallTL.to('.prop-potion',
     { xPercent: -50, yPercent: -50, x: '0vw', y: '-55vh', scale: 1.8, opacity: 0, duration: 1.5, ease: 'power1.in' },
-    33.5
+    40.5
   );
 
-  // 6. Prop 6: Luv (30.0s -> 41.5s) - Takes spotlight at 33.5s
+  // 7. Prop 7: Luv (37.0s -> 48.5s)
   fallTL.fromTo('.prop-compass',
-    { xPercent: -50, yPercent: -50, x: '16vw', y: '35vh', scale: 0.15, opacity: 0, zIndex: 10 },
-    { xPercent: -50, yPercent: -50, x: '12vw', y: '20vh', scale: 0.45, opacity: 0.65, duration: 3.5, ease: 'sine.out' },
-    30.0
+    { xPercent: -50, yPercent: -50, x: '-16vw', y: '35vh', scale: 0.15, opacity: 0, zIndex: 10 },
+    { xPercent: -50, yPercent: -50, x: '-12vw', y: '20vh', scale: 0.45, opacity: 0.65, duration: 3.5, ease: 'sine.out' },
+    37.0
   );
   fallTL.to('.prop-compass',
     { xPercent: -50, yPercent: -50, x: '0vw', y: '0vh', scale: 1.0, opacity: 1, zIndex: 30, duration: 1.5, ease: 'power2.out' },
-    33.5
+    40.5
   );
   fallTL.to('.prop-compass',
-    { xPercent: -50, yPercent: -50, x: '-1.5vw', y: '2vh', scale: 1.03, duration: 5.0, ease: 'sine.inOut' },
-    35.0
+    { xPercent: -50, yPercent: -50, x: '1.5vw', y: '-2vh', scale: 1.03, duration: 5.0, ease: 'sine.inOut' },
+    42.0
   );
   fallTL.to('.prop-compass',
     { xPercent: -50, yPercent: -50, x: '0vw', y: '-55vh', scale: 1.8, opacity: 0, duration: 1.5, ease: 'power1.in' },
-    40.0
+    47.0
   );
 
-  // 7. Prop 7: YouTube Short 2 (36.5s -> 49.0s) - Takes spotlight at 40.0s
+  // 8. Prop 8: YouTube Short 2 (43.5s -> 56.0s)
   fallTL.fromTo('.prop-mac',
-    { xPercent: -50, yPercent: -50, x: '-16vw', y: '35vh', scale: 0.15, opacity: 0, zIndex: 10, pointerEvents: 'none' },
-    { xPercent: -50, yPercent: -50, x: '-12vw', y: '20vh', scale: 0.45, opacity: 0.65, duration: 3.5, ease: 'sine.out' },
-    36.5
+    { xPercent: -50, yPercent: -50, x: '16vw', y: '35vh', scale: 0.15, opacity: 0, zIndex: 10, pointerEvents: 'none' },
+    { xPercent: -50, yPercent: -50, x: '12vw', y: '20vh', scale: 0.45, opacity: 0.65, duration: 3.5, ease: 'sine.out' },
+    43.5
   );
   fallTL.to('.prop-mac',
     { xPercent: -50, yPercent: -50, x: '0vw', y: '0vh', scale: 1.0, opacity: 1, zIndex: 30, duration: 1.5, ease: 'power2.out', pointerEvents: 'auto' },
-    40.0
+    47.0
   );
   fallTL.to('.prop-mac',
     { xPercent: -50, yPercent: -50, x: '0vw', y: '-2vh', scale: 1.03, duration: 6.0, ease: 'sine.inOut', pointerEvents: 'auto' },
-    41.5
+    48.5
   );
   fallTL.to('.prop-mac',
     { xPercent: -50, yPercent: -50, x: '0vw', y: '-55vh', scale: 1.8, opacity: 0, duration: 1.5, ease: 'power1.in', pointerEvents: 'none' },
-    47.5
+    54.5
   );
 
-  // Calibrated Audio Monitor for 49s timeline
+  // Calibrated Audio Monitor for 56s timeline
   fallTL.eventCallback("onUpdate", () => {
     const progress = fallTL.progress();
 
-    // YouTube Short 1 (active ~0.13 to ~0.31)
-    if (progress >= 0.13 && progress <= 0.31) {
+    if (progress >= 0.12 && progress <= 0.24) {
       if (!yt1Active) {
         yt1Active = true;
         playYouTubeVideo(yt1Frame);
@@ -402,8 +377,7 @@ function buildSpaceFallTimeline() {
       }
     }
 
-    // Frame Video (active ~0.40 to ~0.59)
-    if (progress >= 0.40 && progress <= 0.59) {
+    if (progress >= 0.36 && progress <= 0.48) {
       if (!yt3Active) {
         yt3Active = true;
         playYouTubeVideo(yt3Frame);
@@ -418,8 +392,7 @@ function buildSpaceFallTimeline() {
       }
     }
 
-    // YouTube Short 2 (active ~0.81 to ~1.00)
-    if (progress >= 0.81 && progress <= 1.00) {
+    if (progress >= 0.84 && progress <= 0.97) {
       if (!yt2Active) {
         yt2Active = true;
         playYouTubeVideo(yt2Frame);
@@ -448,7 +421,7 @@ function resetSpaceFallTimeline() {
   muteAllYouTubeVideos();
 }
 
-// --- RESISTANCE & RABBIT HOLE CONTROLLER ---
+// --- RESISTANCE & RABBIT HOLE WHEEL CONTROLLER ---
 document.addEventListener('DOMContentLoaded', () => {
   const rabbitHoleSection = document.getElementById('rabbit-hole');
   const closeBtn = document.getElementById('closeRabbitHole');
@@ -485,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (rabbitText) {
       rabbitText.style.color = '#ef4444';
-      rabbitText.innerText = 'Curiosity often lead to trouble... push again!';
+      rabbitText.innerText = 'Curiosity often leads to trouble... push again!';
       gsap.fromTo(rabbitText, { scale: 1.15 }, { scale: 1, duration: 0.35, ease: 'back.out(2)' });
     }
 
@@ -534,54 +507,42 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function exitTunnelToSection(targetSection) {
-    if (isExitingTunnel) return;
-    isExitingTunnel = true;
-    tunnelWheelActive = false;
     muteAllYouTubeVideos();
 
-    isTunnelOpen = false;
-
-    // Temporarily disable ScrollTriggers so jumping doesn't trigger callbacks
-    ScrollTrigger.getAll().forEach(t => t.disable(false));
-
-    // Teleport under dark veil
-    if (targetSection === aboutSection) {
-      window.scrollTo(0, 0);
-    } else if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'instant' });
-    }
-
-    // Fade out tunnel overlay
     gsap.to(rabbitHoleSection, {
       opacity: 0,
-      duration: 0.45,
-      ease: 'power2.inOut',
+      duration: 0.4,
+      ease: 'power2.in',
       onComplete: () => {
         rabbitHoleSection.classList.remove('visible');
         document.body.style.overflow = '';
+        isTunnelOpen = false;
+        tunnelWheelActive = false;
         resetSpaceFallTimeline();
-
-        // Re-enable ScrollTriggers cleanly at new position
-        ScrollTrigger.getAll().forEach(t => t.enable(false));
-        ScrollTrigger.refresh();
-
-        // Swallow residual trackpad momentum
-        setTimeout(() => {
-          isExitingTunnel = false;
-        }, 200);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     });
   }
 
-  // --- UNIFIED WHEEL CONTROLLER ---
-  window.addEventListener('wheel', (e) => {
-    // If snapping or exiting tunnel, prevent duplicate event conflicts
-    if (isSnapping || isExitingTunnel) {
+  // DIRECT CLICK/TAP SUPPORT (Crucial for iOS & Mobile)
+  if (rabbitText) {
+    rabbitText.style.cursor = 'pointer';
+    rabbitText.addEventListener('click', () => {
+      if (!isTunnelOpen) {
+        enterRabbitHole();
+      }
+    });
+    rabbitText.addEventListener('touchend', (e) => {
       e.preventDefault();
-      return;
-    }
+      if (!isTunnelOpen) {
+        enterRabbitHole();
+      }
+    });
+  }
 
-    // 1. Inside Tunnel Navigation
+  window.addEventListener('wheel', (e) => {
     if (isTunnelOpen) {
       e.preventDefault();
       if (!tunnelWheelActive) return;
@@ -610,36 +571,12 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-// 2. Two-Way Snapping between Phase 4 and Featured Works
-    const st = phaseTL ? phaseTL.scrollTrigger : null;
-    if (st && projectsSec) {
-      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-      const projectsTop = projectsSec.offsetTop;
-
-      // Scrolling DOWN past Phase 4 into Featured Works
-      if (e.deltaY > 0 && currentScroll >= (st.end - 50) && currentScroll < (projectsTop - 50)) {
-        e.preventDefault();
-        snapScrollTo(projectsTop);
-        return;
-      }
-
-      // Scrolling UP from Featured Works -> Snap to 100% clean Phase 4
-      if (e.deltaY < 0 && currentScroll >= (projectsTop - 60) && currentScroll <= (projectsTop + 80)) {
-        e.preventDefault();
-        const phase4Progress = phaseTL.labels['phase4'] / phaseTL.duration();
-        const phase4CleanScroll = st.start + (st.end - st.start) * phase4Progress;
-        snapScrollTo(phase4CleanScroll);
-        return;
-      }
-    }
-
-    // 3. Rabbit Hole Detection at Bottom of Page
     const scrollPosition = Math.ceil(window.innerHeight + window.scrollY);
     const pageHeight = Math.max(
       document.body.scrollHeight,
       document.documentElement.scrollHeight
     );
-    const isAtBottom = scrollPosition >= pageHeight - 50;
+    const isAtBottom = scrollPosition >= pageHeight - 100;
 
     if (isAtBottom && e.deltaY > 0) {
       e.preventDefault();
