@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/symbol_bloodred.svg" type="image/icon type">
+    <title>Brain Coach Sammy — Whani Kim</title>
+    <style>
+        /* Force pristine solid white background, overriding any style.css defaults */
+        html, body {
+            background-color: #ffffff !important;
+            background: #ffffff !important;
+            color: #191f28;
+            line-height: 1.6;
+        }
+
+        /* Logo and nav link text color set to black */
+        .logo, 
+        .nav_links li a {
+            color: #191f28 !important;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .logo:hover,
+        .nav_links li a:hover {
+            color: #2563eb !important;
+        }
+
+        /* Article Header / Hero */
+        header.article-header {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 140px 24px 40px 24px;
+            text-align: left;
+            background-color: #ffffff !important;
+        }
+
+        .article-category {
+            display: inline-block;
+            background-color: #eff6ff;
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+
+        header.article-header h1 {
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: #191f28;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: #6b7280;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            border-bottom: 1px solid #f2f4f6;
+            padding-bottom: 24px;
+        }
+
+        /* Blog Article Content Layout with Smaller Fonts */
+        main.article-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 24px 80px 24px;
+            background-color: #ffffff !important;
+        }
+
+        .article-content h2 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: #191f28;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .article-content p {
+            font-size: 0.98rem;
+            color: #374151;
+            margin-bottom: 20px;
+            line-height: 1.65;
+        }
+
+        /* Editorial Callout Box Style */
+        .article-callout {
+            background-color: #f9fafb;
+            border-left: 3px solid #2563eb;
+            padding: 18px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 32px 0;
+        }
+
+        .article-callout p {
+            margin-bottom: 0;
+            color: #1f2937;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+/* Centered Download CTA Container */
+        .download-section {
+            margin-top: 56px;
+            padding: 36px 24px;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .download-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #191f28;
+            margin-bottom: 6px;
+            letter-spacing: -0.4px;
+        }
+
+        .download-subtitle {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-bottom: 24px;
+        }
+
+        .download-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        /* Base Store Badge */
+        .store-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #000000;
+            padding: 10px 22px;
+            text-decoration: none;
+            min-width: 175px;
+            height: 58px;
+            box-sizing: border-box;
+            user-select: none;
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .store-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+        }
+
+        .store-icon {
+            flex-shrink: 0;
+        }
+
+        .badge-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        /* Native Apple App Store Styling */
+        .apple-badge {
+            border-radius: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff !important;
+        }
+
+        .apple-badge:hover {
+            border-color: rgba(255, 255, 255, 0.45);
+        }
+
+        .apple-sub {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: #ffffff;
+            opacity: 0.9;
+            letter-spacing: -0.2px;
+            line-height: 1;
+        }
+
+        .apple-main {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            line-height: 1.25;
+            margin-top: 1px;
+        }
+
+        /* Native Google Play Styling */
+        .google-badge {
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #ffffff !important;
+        }
+
+        .google-badge:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .google-sub {
+            font-family: "Roboto", "Inter", sans-serif;
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: #e5e7eb;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .google-main {
+            font-family: "Product Sans", "Roboto", "Inter", sans-serif;
+            font-size: 1.12rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.2px;
+            line-height: 1.25;
+            margin-top: 2px;
+        }
+
+        /* Smaller, Compact Footer */
+        footer {
+            padding: 30px 8%;
+            background-color: #ffffff !important;
+            color: #9ca3af;
+            font-size: 0.8rem;
+            text-align: center;
+            border-top: 1px solid #f2f4f6;
+        }
+
+        .SammyTV {
+            display: block;
+            margin: 0 auto 40px auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .improve {
+            display: block;
+            margin: 0 auto 40px auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .research {
+            display: block;
+            margin: 0 auto 40px auto;
+            max-width: 90%;
+            height: auto;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            header.article-header {
+                padding-top: 100px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Header matching index.html -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Whani Kim</a>
+            <ul class="nav_links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#home">Phase</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Article Header / Metadata -->
+    <header class="article-header">
+        <span class="article-category">Digital Health Product & Research</span>
+        <h1>Brain Coach Sammy : Digital Assessment and Training for Cognitive Impairment</h1>
+        <div class="article-meta">
+            <span>R&D & Product Lead</span>
+            <span>&bull;</span>
+            <span>HAII Corp.</span>
+            <span>&bull;</span>
+            <span>Digital health</span>
+        </div>
+    </header>
+    <!-- Blog Article Body -->
+    <main class="article-content">
+          <img src="images/Brain Coach SammyTV.png" alt="SammyTV" class="SammyTV">
+        <h2>Overview</h2>
+        <p> In this post, I would like to introduce Brain Coach Sammy. My team and I worked with clinicians from Ewha Woman's University Hospital to develop cognitive training programs for the elderly.
+            This solution focuses on delaying the cognitive decay due to Alzheimer's and Related Diseases (ADRD) and preventing it through cognitive engagement. 
+            I'm particularly proud of this product because the amount of work and attention our team have put in and how it has received by the users.</p>
+
+        <h2>Sammy: The Brain Coach</h2>
+        <p>Beyond diagnostics, <strong>Sammy the Brain Coach</strong> serves as the therapeutic treatment solution for cognitive impairment. 
+           Sammy was designated as an innovative product by the Public Procurement Service. <br><br>
+           The core of Sammy is in that users complete a 10 minute cognitive assessment, then based on the results, we personalize the difficulty of the training programs.
+           Users repeat the assessment every 28 days to track their cognitive change. There are currently total of 15 training programs that target memory, executive function,
+           attention, visuospatial, language, and calculation. <br>
+           
+        <h3>UX Challenges for Elderly Users</h3>
+        <p>Sammy was originally a chatbot within KakaoTalk, the most popular messenger app in South Korea. 
+           However, designing effective training programs within the messenger was limited (i.e., using GIFs to display tasks, offering only pre-determined choices, and requiring cumbersome alphanumeric switching on native keyboards). 
+           So our team rebuilt the application so that it could fully embrace the cognitive training program as well as providing tailored UX for the elderly.</p>
+        <figure>
+            <img src="images/improve.png" alt="improve" class="improve">
+            <figcaption style="font-style: italic; color: #555; font-size: 0.8rem; text-align: center;">The switch from a messenger application (left) to a dedicated web application (right)</figcaption>
+        </figure>
+</p>
+
+        <h2>The Research</h2>
+        <div class="article-callout">
+            <p>"TL;DR: Those with mild cognitive impairment showed significant positive changes in cognitive scores compared to the control group in CERAD-K."</p>
+        </div>
+        <p> Our team conducted a 12 week study at Suncheon City Dementia Care Center, a public facility established in local health centers to 
+            provide comprehensive support for dementia prevention, early screening, and care for patients and their families. <br>
+            A total of 125 older adults completed the study. We classified cognitive status using the Clinical Dementia Rating (CDR): 
+            0 = Cognitively normal (CN), 0.5 = Mild Cognitive Impairment (MCI), 0.5 ~ 2 = Mild Dementia.
+            Participants who were assigned to the intervention group used Sammy, while control group received usual care from the center. 
+        
+        <figure>
+            <img src="images/sammy-research.png" alt="research" class="research">
+            <figcaption style="font-style: italic; color: #555; font-size: 0.8rem; text-align: center;">Within each panel, columns present comparisons for all participants, cognitively normal participants, all cognitively impaired participants, participants with Mild Cognitive Impairment (MCI), and participants with Mild Dementia (MD).</figcaption>
+        </figure> 
+        <br>
+
+        <p> Our results showed that <strong>participants with MCI showed significant positive cognitive change</strong> than the control group with a moderate effect size. 
+            In contrast, participants who were cognitively normal or had mild dementia showed no significant differences between the two groups.
+            <br><br>
+            This advantage became even stronger when adjusting for equal intervention duration. Under this comparison, the cognitive benefit was heavily concentrated in the MCI cohort, 
+            where participants using Sammy demonstrated substantial improvements over usual care with a large effect size.
+            These findings highlight that Sammy is particularly effective as a targeted intervention during the critical early window of mild cognitive impairment.
+
+        <h2>Implementation to Samsung SmartTV</h2>
+        <p>Samsung approached us with an opportunity to integrate Brain Coach Sammy across Samsung Smart TVs worldwide. 
+            To meet the milestone of showcasing the product live at CES 2026, we formed a dedicated task force to transition our mobile application into a livingroom experience. <br><br>
+            Designing for a TV interface required rethinking our interaction paradigm. 
+            Direct touch and swipe gestures had to be replaced entirely by a standard TV remote control, where complex navigation or rapid button presses would cause friction. 
+            We audited our training program, redesigning exercises around the directional D-pad and removing touch-dependent mechanics that did not translate naturally to a remote.
+            <br><br> 
+            
+            To increase engagement, we also implemented a gamification element called "brain age" based on the cognitive assessment. 
+            Our aim with brain age was to alleviate the anxiety often tied to test scores by <strong> providing users with a metric that felt more intuitive, encouraging, and actionable. </strong>
+
+            <br><br>
+
+            Our efforts were met with successful launch of Sammy, receiving media attention worldwide. We continue to further develop Sammy in hopes of acheiving the company mission: <strong>one more healthy day for millions.</strong>
+            <div style="display: flex; justify-content: center;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/DrDwfCiObkA" title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </p>    
+
+<!-- Download CTA Section (Centered & Native Badges) -->
+        <div class="download-section">
+            <h3 class="download-title">Download Brain Coach Sammy</h3>
+            <p class="download-subtitle">Start your cognitive training on iOS or Android.</p>
+            
+            <div class="download-buttons">
+                <!-- Apple App Store Native Badge -->
+                <a href="https://apps.apple.com/us/app/sammy-my-brain-health-coach/id6478643152" target="_blank" rel="noopener noreferrer" class="store-badge apple-badge">
+                    <svg class="store-icon" viewBox="0 0 24 24" width="24" height="24" fill="#ffffff" aria-hidden="true">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.93-2.85-.9.04-2 .6-2.64 1.35-.57.65-1.07 1.72-.94 2.74 1 .08 2.03-.49 2.65-1.24z"/>
+                    </svg>
+                    <div class="badge-text">
+                        <span class="badge-sub apple-sub">Download on the</span>
+                        <span class="badge-main apple-main">App Store</span>
+                    </div>
+                </a>
+
+                <!-- Google Play Native Badge -->
+                <a href="https://play.google.com/store/apps/details?id=io.haii.alzant&hl=pt" target="_blank" rel="noopener noreferrer" class="store-badge google-badge">
+                    <svg class="store-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                        <path fill="#4285F4" d="M3.61 1.81c-.37.38-.61.93-.61 1.64v17.1c0 .71.24 1.26.61 1.64l.08.07 9.6-9.6v-.23L3.69 1.74l-.08.07z"/>
+                        <path fill="#FBBC04" d="M16.51 15.22l-3.22-3.22v-.23l3.22-3.22.07.04 3.82 2.17c1.09.62 1.09 1.63 0 2.25l-3.82 2.17-.07.04z"/>
+                        <path fill="#EA4335" d="M16.58 15.18L13.29 11.9 3.61 22.19c.36.38 1.03.43 1.8.04l11.17-6.35-.38-.7z"/>
+                        <path fill="#34A853" d="M16.58 8.57L4.99 1.97c-.77-.39-1.44-.34-1.8.04l9.68 10.29 3.29-3.29.42-.44z"/>
+                    </svg>
+                    <div class="badge-text">
+                        <span class="badge-sub google-sub">GET IT ON</span>
+                        <span class="badge-main google-main">Google Play</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Whani Kim. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"
+        integrity="sha512-1dalHDkG9EtcOmCnoCjiwQ/HEB5SDNqw8d4G2MKoNwjiwMNeBAkudsBCmSlMnXdsH8Bm0mOd3tl/6nL5y0bMaQ=="
+        crossorigin="anonymous">
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

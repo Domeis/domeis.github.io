@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;800;900&display=swap" rel="stylesheet">
     <link rel="icon" href="images/symbol_bloodred.svg" type="image/icon type">
 
     <title>Whani Kim</title>
-
 </head>
 
 <body>
@@ -18,10 +17,11 @@
         <nav>
             <a href="#" class="logo">Whani Kim</a>
             <ul class="nav_links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#about">Home</a></li>
+                <li><a href="#home">Phase</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
             </ul>
             <div class="burger">
                 <div class="line1"></div>
@@ -31,64 +31,183 @@
         </nav>
     </header>
 
-    <section id=home>
-        <p class=stage> Phase 1.</p>
-        <h1 class=name>Growth </h1>
-        <p class=name-description>
-            <span id="lobster">Like a lobster that has outgrown its shell. This phase is fueld by the urge to
-                grow.
-                <br> The growth is directed and deliberate. Absorbing knowledge deemed useful, and rejecting those
-                that are not.
-                <br><br> From side projects, reading books and articles, learning new skills, weightlifting… <br>
-                Anything related to positive growth.
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <div class="about-content-wrapper">
+        <div class="about-text-column">
+          <h1 class="about_me">Whani Kim</h1>
+          <div class="my_description">
+            <span>Currently a R&D/Product Lead at <a href="https://www.haiiglobal.com/" target="_blank">HAII Corp.</a></span>
+            <br>
+            I am a cognitive psychologist. I received my M.A. in cognitive psychology from Seoul National University, advised by Dr. Sowon Hahn in the Human Factors Psychology Lab. 
+            My research objectives lie in investigating the effects of human-AI interactions on social cognition, human intelligence, and developing systems that allow these human traits
+            to flourish alongside artificial intelligent systems. To gain a comprehensive understanding, I'm interested in pursuing this line of research across cross-cultural and diverse age cohorts.<br><br> 
+            Through these endeavors, my goal is to uncover both the good and the bad of AI systems on psychological processes to help guide and develop AI systems to benefit human society while minimizing the harmful effects that these systems can bring.
 
-                <br><br> I’m a thinker by nature. 
-                <br> This is a product of that desire to grow and a creative outlet to funnel people in and let them know about me.
-        </p>
+            <br><br>Outside of work, I spend time taking care of my bonsai trees and try not to kill them. 
+            <a href="pdfs/Whani_Kim_2026_CV.pdf" class="cv-btn" target="_blank">Click for CV</a>
+          </div>
+        </div>
+
+        <div class="profile-image">
+          <img src="images/Dom-profile.jpg" alt="Whani Kim" class="profile-photo">
+        </div>
+      </div>
     </section>
 
-    <!-- ABOUT SECTION -->
-    <section id=about>
-        <h1 class="about_me">About Me</h1>
-        <p class="my_description">I'm currently working as a Product Lead at HAII Corp. <br>
-            I come from a dedicated psychology background with a Master's in Cognitive Psychology. <br>
-            My current motivations include developing my unique research principles. <br>
-            Previous experiences at a design agency gave me opportunity to work across many industries including automative and
-            cosmetics. <br> Currently, my work encompasses ux research, global business development, and product design for <br> development of a cognitive asessement tool aimed to diagnose cognitive impairment through mobile applications. 
-            <a class="my_description" href="pdfs/WhaniKim_Resume__2024.pdf" target="_blank"> Resume </a>
-        </p>
-        <!--  <img class="profile" src="images/profile.jpeg" alt="Dom"> -->
+    <!-- PHASE SECTION -->
+    <section id="home">
+        <!-- Dynamic Pastel Mesh Atmosphere -->
+        <div class="phase-bg-color"></div>
+        <div class="phase-orb phase-orb-1"></div>
+        <div class="phase-orb phase-orb-2"></div>
 
+        <div class="phase-content-wrapper">
+            <div class="phase-text-column">
+                <!-- Chapter Progress Navigation -->
+                <div class="phase-timeline-nav">
+                    <div class="phase-nav-item active" data-phase="0">
+                        <span class="p-num">01</span>
+                        <span class="p-label">Growth</span>
+                    </div>
+                    <div class="p-connector"><span class="p-line"></span></div>
+                    <div class="phase-nav-item" data-phase="1">
+                        <span class="p-num">02</span>
+                        <span class="p-label">Realization</span>
+                    </div>
+                    <div class="p-connector"><span class="p-line"></span></div>
+                    <div class="phase-nav-item" data-phase="2">
+                        <span class="p-num">03</span>
+                        <span class="p-label">Longing</span>
+                    </div>
+                    <div class="p-connector"><span class="p-line"></span></div>
+                    <div class="phase-nav-item" data-phase="3">
+                        <span class="p-num">04</span>
+                        <span class="p-label">New Horizon</span>
+                    </div>
+                </div>
+
+                <!-- Frosted Glass Stage -->
+                <div class="phase-stage">
+                    
+                    <!-- Phase 1 -->
+                    <div class="phase-card active" id="phase-0">
+                        <p class="stage">Phase 1.</p>
+                        <div class="header-group">
+                            <h1 class="name">Growth</h1>
+                            <span class="phase-date">Feb 2022 – Dec 2022</span>
+                        </div>
+                        <p class="name-description">
+                            Like a lobster that has outgrown its shell, this phase is fueled by the urge to grow. The growth is directed and deliberate—absorbing knowledge deemed useful, and rejecting those that are not.
+                            <br><br>
+                            From pursuing side projects, learning to code, reading self-development books, and weightlifting… anything related to positive growth. I’m a thinker by nature. This website is a product of that desire to grow and a creative outlet to funnel people in and let them know about me.
+                        </p>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="phase-card" id="phase-1">
+                        <p class="stage">Phase 2.</p>
+                        <div class="header-group">
+                            <h1 class="name">Realization</h1>
+                            <span class="phase-date">Dec 2022 – Dec 2025</span>
+                        </div>
+                        <p class="name-description">
+                            The stars aligned and the longing for a greater purpose was given an answer. The period of cultivation had passed, giving way to reaping the fruits of the lessons and skills acquired from the Growth phase.
+                            <br><br>
+                            This period is marked by the newfound drive to quench an old ambition that had always remained close to the heart. In hindsight, it was one of the most defining phases of my life, bringing new meanings, purposes, and journeys.
+                        </p>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div class="phase-card" id="phase-2">
+                        <p class="stage">Phase 3.</p>
+                        <div class="header-group">
+                            <h1 class="name">Longing...Loading</h1>
+                            <span class="phase-date">Dec 2025 – Feb 2026</span>
+                        </div>
+                        <p class="name-description">
+                            Everything is subject to change and end. The people I work with and the goals set forth. The energy shifted, and a subtle nudge demanded attention. It had always been there, merely numbed by the hectic drive.
+                            <br><br>
+                            So I started defining the longing. As it became clearer, the next phase began to load...
+                        </p>
+                    </div>
+
+                    <!-- Phase 4 -->
+                    <div class="phase-card" id="phase-3">
+                        <p class="stage">Phase 4.</p>
+                        <div class="header-group">
+                            <h1 class="name">New Horizon</h1>
+                            <span class="phase-date">Feb 2026 – Current</span>
+                        </div>
+                        <p class="name-description">
+                            As the search went on, the vision became more apparent. A new horizon presented itself before me, bringing new challenges, potential opportunities, and a future I could envision.
+                            <br><br>
+                            This yearning is different from the Growth phase where it came from a place of desperation, but rather from a place of giddiness. As new challenges and journeys await, the optimism continues to grow.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- PROJECT SECTION -->
-    <section id=projects>
-        <div class="projectContainer">
-            <div class="projectCard"> <a href="pdfs/HRI.pdf"><img src="images/robot.png" alt="HRI">
-                    <div class="text">Human-Robot Interaction</div>
-            </div>
-            <div class="projectCard"> <a href="pdfs/EdTech.pdf"><img src="images/Edtech.png" alt="Edtech">
-                    <div class="text"> EdTech </div>
+    <section id="projects">
+        <div class="projects-wrapper">
+            <h2 class="section-title">Featured Works</h2>
+        </div>
+        
+        <div class="project-scroll-container">
+            <div class="project-row">
+                <!-- Card 1 -->
+                <a href="project-research.html" class="project-card-item">
+                    <div class="card-visual visual-1">
+                        <img src="images/DACI-research.png" alt="Research" class="preview-img">
+                        <div class="action-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Substitute or Supplement?</h3>
+                        <p class="card-desc">Multi-Modal Digital Assessment of Cognitive Impairment</p>
+                    </div>
                 </a>
-            </div>
-            <div class="projectCard"> <a href="pdfs/Mental.pdf"><img src="images/Mental.png" alt="mental">
-                    <div class="text">Mental Health App</div>
+
+                <!-- Card 2 -->
+                <a href="project-sammy.html" class="project-card-item">
+                    <div class="card-visual visual-2">
+                        <img src="images/Brain Coach Sammy_blk.png" alt="Sammy" class="preview-img">
+                        <div class="action-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Brain Coach Sammy</h3>
+                        <p class="card-desc">Cognitive assessment and training for dementia prevention.</p>
+                    </div>
                 </a>
-            </div>
-            <div class="projectCard"> <a href="pdfs/Smartwatch.pdf"><img src="images/smartwatch.png" alt="smartwatch">
-                    <div class="text">Smartwatch</div>
+
+                <!-- Card 3 -->
+                <a href="project-teaching.html" class="project-card-item">
+                    <div class="card-visual visual-3">
+                        <img src="images/teaching.jpg" alt="lecture" class="preview-img">
+                        <div class="action-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Psychology in UX</h3>
+                        <p class="card-desc">Special lecture at Yonsei Unviersity</p>
+                    </div>
                 </a>
             </div>
         </div>
-
-
     </section>
 
-    <!-- Contact SECTION -->
-    <section id=contact>
+    <!-- CONTACT SECTION -->
+    <section id="contact">
         <h1>Get in touch!</h1>
         <div class="contact_Container">
-
             <form method="POST" action="https://api.slapform.com/whani.kim405@gmail.com">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Name">
@@ -100,16 +219,62 @@
                 <textarea id="subject" name="subject" placeholder="Message" style="height:200px"></textarea>
 
                 <input type="submit" value="Send">
-
             </form>
+            <p class="rabbit-hole-text"><u>Go down</u> the rabbit hole...</p>
         </div>
     </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"
-        integrity="sha512-1dalHDkG9EtcOmCnoCjiwQ/HEB5SDNqw8d4G2MKoNwjiwMNeBAkudsBCmSlMnXdsH8Bm0mOd3tl/6nL5y0bMaQ=="
-        crossorigin="anonymous">
-        </script>
-    <script src="app.js"></script>
-    </div>
-</body>
 
+    <!-- HIDDEN SECTION: Down the Rabbit Hole (Falling Tunnel) -->
+    <section id="rabbit-hole" class="rabbit-hole-section">
+        <div class="tunnel-walls"></div>
+        <div class="portal-stars"></div>
+        <div class="tunnel-bg-tint"></div>
+        
+        <div class="rabbit-hole-container">
+            <div class="tunnel-props-wrapper">
+                <!-- 1. Clock -->
+                <div class="fall-prop prop-clock" data-speed="1.2">
+                    <img src="images/fall.png" alt="fall" class="fall">
+                </div>
+
+                <!-- 2. YouTube Short 1 -->
+                <div class="fall-prop prop-youtube" data-speed="1.0">
+                    <iframe width="300" height="533" src="https://www.youtube.com/embed/w7_Wk6IcSVs?autoplay=0&mute=1&loop=1&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="yt-short-iframe"></iframe>
+                </div>
+
+                <!-- 3. Circles -->
+                <div class="fall-prop prop-key" data-speed="0.8">
+                    <img src="images/circles.png" alt="circles" class="circles">
+                </div>
+
+                <!-- 4. Frame Video (YouTube) -->
+                <div class="fall-prop prop-frame" data-speed="0.6">
+                    <iframe width="300" height="533" src="https://www.youtube.com/embed/g-IEnTQzxew?autoplay=0&mute=1&loop=1&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="yt-short-iframe"></iframe>
+                </div>
+
+                <!-- 5. Okay -->
+                <div class="fall-prop prop-potion" data-speed="1.5">
+                    <img src="images/okay.png" alt="okay" class="okay">
+                </div>
+
+                <!-- 6. Luv -->
+                <div class="fall-prop prop-compass" data-speed="1.1">
+                     <img src="images/luv.jpg" alt="luv" class="luv">
+                </div>
+
+                <!-- 7. YouTube Short 2 -->
+                <div class="fall-prop prop-mac" data-speed="0.9">
+                    <iframe width="300" height="533" src="https://www.youtube.com/embed/ZfS_MmAjvZg?autoplay=0&mute=1&loop=1&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="yt-short-iframe"></iframe>
+                </div>
+            </div>
+            <button id="closeRabbitHole" class="exit-rabbit-btn">Exit Rabbit Hole</button>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="app.js"></script>
+</body>
 </html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/symbol_bloodred.svg" type="image/icon type">
+    <title>Special Lecture: Psychology in UX — Whani Kim</title>
+    <style>
+        /* Force pristine solid white background, overriding any style.css defaults */
+        html, body {
+            background-color: #ffffff !important;
+            background: #ffffff !important;
+            color: #191f28;
+            line-height: 1.6;
+        }
+
+        /* Logo and nav link text color set to black */
+        .logo, 
+        .nav_links li a {
+            color: #191f28 !important;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .logo:hover,
+        .nav_links li a:hover {
+            color: #2563eb !important;
+        }
+
+        /* Article Header / Hero */
+        header.article-header {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 160px 24px 60px 24px;
+            text-align: left;
+            background-color: #ffffff !important;
+        }
+
+        .article-category {
+            display: inline-block;
+            background-color: #eff6ff;
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+
+        header.article-header h1 {
+            font-size: clamp(2.25rem, 4vw, 3.25rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: #191f28;
+            margin-bottom: 20px;
+            line-height: 1.25;
+        }
+
+        .article-meta {
+            font-size: 0.95rem;
+            color: #6b7280;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            border-bottom: 1px solid #f2f4f6;
+            padding-bottom: 30px;
+        }
+
+        /* Featured Video Container (16:9) */
+        .video-wrapper {
+            max-width: 960px;
+            margin: 0 auto 60px auto;
+            padding: 0 24px;
+        }
+
+        .video-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            background: #000;
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Blog Article Content Layout */
+        main.article-content {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 0 24px 100px 24px;
+            background-color: #ffffff !important;
+        }
+
+        .article-content h2 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: #191f28;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .article-content p {
+            font-size: 0.98rem;
+            color: #374151;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        /* Editorial Callout Box Style */
+        .article-callout {
+            background-color: #f9fafb;
+            border-left: 4px solid #2563eb;
+            padding: 24px;
+            border-radius: 0 16px 16px 0;
+            margin: 40px 0;
+        }
+
+        .article-callout p {
+            margin-bottom: 0;
+            color: #1f2937;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 8%;
+            background-color: #ffffff !important;
+            color: #6b7280;
+            font-size: 0.9rem;
+            text-align: center;
+            border-top: 1px solid #f2f4f6;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            header.article-header {
+                padding-top: 120px;
+            }
+        }
+        .article-references {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #f2f4f6;
+        }
+
+        .article-references h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 12px;
+        }
+
+        .article-references p {
+    font-size: 0.82rem !important; /* Smaller font size */
+    color: #6b7280 !important;     /* Muted grey color */
+    line-height: 1.6;
+    margin-bottom: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Header matching index.html -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Whani Kim</a>
+            <ul class="nav_links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#home">Phase</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Article Header / Metadata -->
+    <header class="article-header">
+        <span class="article-category">Featured Lecture & Research</span>
+        <h1>Special Lecture: Psychology in UX</h1>
+        <div class="article-meta">
+            <span>September 2026</span>
+            <span>&bull;</span>
+            <span>40 min watch</span>
+            <span>&bull;</span>
+            <span>Interaction Design and Psychology</span>
+        </div>
+    </header>
+
+    <div class="video-wrapper">
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/WTOIzbyp5uE" 
+                title="Special Lecture: Interaction Design - Psychology in UX" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <main class="article-content">
+        <h2>Overview</h2>
+        <p>I had the opportunity to give a lecture to undergraduate students on psychology in UX at Yonsei University. In the lecture, my goal was to educate them on key psychological 
+            theories that could be useful when building services and the importance of understanding them. Another agenda was to inform them on the possible benefits and dangers of 
+            using LLMs when ideating the services they want to build. Below are the topics discussed in class. <a href="https://docs.google.com/presentation/d/1nMhakibKGtK9D5JFRxeORxt3SAsPtBP4nHCwXohMwuE/preview?slide=id.p">Lecture slides available here.</a>
+        </p>
+
+        <div class="article-callout">
+            <p>"Humans have to be the drivers of creation, not the other way around..."</p>
+        </div>
+
+        <h2>Cognitive Load Theory</h2>
+        <p>Cognitive Load Theory was developed in 1988 by Australian educational psychologist John Sweller at the University of New South Wales (UNSW). 
+           He developed cognitive load theory out of a study of problem solving, in order "to provide guidelines intended to assist in the presentation of information in a manner that encourages learner activities that optimize intellectual performance".</p>
+        <p>When users interact with a digital product, their working memory has limited capacity. If we fail to manage these loads, users experience cognitive overload.
+            To combat this, we rely on foundational limits like Miller’s Law, which reminds us that human working memory can only handle roughly 7 plus or minus 2 chunks of information at once. Furthermore, Hick’s Law teaches us that the time it takes to make a decision increases logarithmically with the number of choices presented.
+            When users are overwhelmed, they engage in cognitive offloading—delegating their internal thinking processes onto physical or digital external tools to lighten their mental load. 
+
+            More recently, with the use of LLMs the term cognitive outsourcing have emerged as we completely outsource tasks to AI agents.
+        <h2>Cognitive Biases</h2>
+        <p>Researchers must remain vigilant of cognitive biases to produce valid and meaningful results. 
+            This feat is inherently challenging, as humans naturally process information through their unique mental schemas. 
+            The best practice is to constantly question whether our observations are influenced by our expectations or desires.</p>
+
+        <p>Beyond our own internal biases, we must account for the biases that participants may have. For instance, social desirability bias causes people to answer in a way that makes them look socially acceptable. Acquiescence Bias makes users automatically agree with statements to be polite. 
+            Recall bias occurs when users misremember past events, and extreme responding happens when participants only pick the highest or lowest points on a rating scale.</p>
+            <p>A classic experiment by Loftus and Palmer (1974) demonstrated how easily memory can be manipulated simply by changing word choices (e.g., asking how fast cars were going when they smashed vs. contacted each other altered both speed estimates and created false memories).
+            While individual differences are inevitable, it is important to be rigorous when conducting research and analyzing data to minimize their confounding effects.</p>
+
+        <h2>Advancements in AI - The Good and The Bad</h2>
+        <p>In September 2026, OpenAI announced that its agents have solved one of the Millennium Prize Problems: Navier-Stokes equation, while Anthropic announced that Claude discovered a novel enzyme system.
+            These discoveries represent leaps for human society, showcasing the positive potential of AI. However, Google DeepMind published a paper on how AI agents exploited the system to achieve the assigned task.
+           This is highlights the darker side of AI. These instances sparked both amazement and criticism in the scientific community and demonstrates that AI is shaped by how we design it.</p>
+
+        <h2>Recent Research in HAI and its possibilities </h2>
+        <p> Researchers at MIT have conducted studies on how AI affects human cognition. When individuals rely on LLMs to write essays, they report less ownership over their writing, 
+            fail to recall what they wrote, and showed weaker neural connectivity. In another study, researchers showed that users blindly trust a LLM outputs even when it is misinformation, and therefore induce false memories.
+        <p>However, AI systems can be utilized to produce positive outcomes. Researchers have developed a system that generates a future version of you. 
+            Engaging in conversation with this prospective self was shown to reduce anxiety and negative emotions while increasing self-continuity, a measure of a person's ability to relate to their future self. 
+            Additionally, AI systems can be used to create personalized tutors, which can increase motivation and positive emotions for learning. Finally, when an LLM questions the user about a claim rather than generate an explanation, it can boost critical thinking.
+            This goes to show that while AI systems can be impactful, humans must remain the drivers of creations in order for healthy progression of humanity.</p>
+    
+    
+        <div class="article-references">
+            <h3>References</h3>
+            <p>Miller, G. A. (1956). The magical number seven, plus or minus two: Some limits on our capacity for processing information. <em>Psychological review</em>, 63(2), 81.</p>
+            <p>Risko, E. F., & Gilbert, S. J. (2016). Cognitive offloading. <em>Trends in cognitive sciences</em>, 20(9), 676-688.</p>
+            <p>Loftus, E. F., & Palmer, J. C. (1974). Reconstruction of automobile destruction: An example of the interaction between language and memory. <em>Journal of verbal learning and verbal behavior</em>, 13(5), 585-589.</p>
+            <p>Paglieri, D., Cross, L., Genewein, T., Leibo, J. Z., Tomasev, N., & Vezhnevets, A. S. (2026). A Case Study on Emergent Cheating and Whistleblowing in Autonomous Research Swarms. <em>arXiv preprint arXiv:2609.04170</em>.</p>
+            <p>Kosmyna, N., Hauptmann, E., Yuan, Y. T., Situ, J., Liao, X. H., Beresnitzky, A. V., ... & Maes, P. (2025). Your brain on ChatGPT: Accumulation of cognitive debt when using an AI assistant for essay writing task. <em>arXiv preprint arXiv:2506.08872</em>, 4, 206.</p>
+            <p>Pataranutaporn, P., Archiwaranguprok, C., Chan, S. W., Loftus, E., & Maes, P. (2025, March). Slip through the chat: Subtle injection of false information in llm chatbot conversations increases false memory formation. In <em>Proceedings of the 30th International Conference on Intelligent User Interfaces</em> (pp. 1297-1313).</p>
+            <p>Pataranutaporn, P., Winson, K., Yin, P., Lapapirojn, A., Ouppaphan, P., Lertsutthiwong, M., ... & Hershfield, H. E. (2024, October). Future you: a conversation with an AI-generated future self reduces anxiety, negative emotions, and increases future self-continuity. In <em>2024 IEEE Frontiers in Education Conference (FIE)</em> (pp. 1-10). IEEE.</p>
+            <p>Pataranutaporn, P., Leong, J., Danry, V., Lawson, A. P., Maes, P., & Sra, M. (2022, October). AI-generated virtual instructors based on liked or admired people can improve motivation and foster positive emotions for learning. In <em>2022 IEEE Frontiers in Education Conference (FIE)</em> (pp. 1-9). IEEE.</p>
+            <p>Danry, V., Pataranutaporn, P., Mao, Y., & Maes, P. (2023, April). Don’t just tell me, ask me: Ai systems that intelligently frame explanations as questions improve human logical discernment accuracy over causal ai explanations. In <em>Proceedings of the 2023 CHI conference on human factors in computing systems</em> (pp. 1-13).</p>
+        </div>
+
+
+
+ </p>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Whani Kim. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"
+        integrity="sha512-1dalHDkG9EtcOmCnoCjiwQ/HEB5SDNqw8d4G2MKoNwjiwMNeBAkudsBCmSlMnXdsH8Bm0mOd3tl/6nL5y0bMaQ=="
+        crossorigin="anonymous">
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
