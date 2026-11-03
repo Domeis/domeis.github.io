@@ -320,26 +320,7 @@ function buildSpaceFallTimeline() {
     40.5
   );
 
-    // 6. Prop 6: kind (30.5s -> 42.0s)
-  fallTL.fromTo('.prop-kind',
-    { xPercent: -50, yPercent: -50, x: '16vw', y: '35vh', scale: 0.15, opacity: 0, zIndex: 10 },
-    { xPercent: -50, yPercent: -50, x: '12vw', y: '20vh', scale: 0.45, opacity: 0.65, duration: 3.5, ease: 'sine.out' },
-    30.5
-  );
-  fallTL.to('.prop-kind',
-    { xPercent: -50, yPercent: -50, x: '0vw', y: '0vh', scale: 1.0, opacity: 1, zIndex: 30, duration: 1.5, ease: 'power2.out' },
-    34.0
-  );
-  fallTL.to('.prop-kind',
-    { xPercent: -50, yPercent: -50, x: '-1.5vw', y: '2vh', scale: 1.03, duration: 5.0, ease: 'sine.inOut' },
-    35.5
-  );
-  fallTL.to('.prop-kind',
-    { xPercent: -50, yPercent: -50, x: '0vw', y: '-55vh', scale: 1.8, opacity: 0, duration: 1.5, ease: 'power1.in' },
-    40.5
-  );
-
-  // 7. Prop 7: Luv (37.0s -> 48.5s)
+  // 7. Prop 7: luv (37.0s -> 48.5s)
   fallTL.fromTo('.prop-compass',
     { xPercent: -50, yPercent: -50, x: '-16vw', y: '35vh', scale: 0.15, opacity: 0, zIndex: 10 },
     { xPercent: -50, yPercent: -50, x: '-12vw', y: '20vh', scale: 0.45, opacity: 0.65, duration: 3.5, ease: 'sine.out' },
@@ -358,23 +339,23 @@ function buildSpaceFallTimeline() {
     47.0
   );
 
-  // 8. Prop 8: YouTube Short 2 (43.5s -> 56.0s)
+  // 8. Prop 8: mac (43.5s -> 54.5s)
   fallTL.fromTo('.prop-mac',
-    { xPercent: -50, yPercent: -50, x: '16vw', y: '35vh', scale: 0.15, opacity: 0, zIndex: 10, pointerEvents: 'none' },
+    { xPercent: -50, yPercent: -50, x: '16vw', y: '35vh', scale: 0.15, opacity: 0, zIndex: 10 },
     { xPercent: -50, yPercent: -50, x: '12vw', y: '20vh', scale: 0.45, opacity: 0.65, duration: 3.5, ease: 'sine.out' },
     43.5
   );
   fallTL.to('.prop-mac',
-    { xPercent: -50, yPercent: -50, x: '0vw', y: '0vh', scale: 1.0, opacity: 1, zIndex: 30, duration: 1.5, ease: 'power2.out', pointerEvents: 'auto' },
+    { xPercent: -50, yPercent: -50, x: '0vw', y: '0vh', scale: 1.0, opacity: 1, zIndex: 30, duration: 1.5, ease: 'power2.out' },
     47.0
   );
   fallTL.to('.prop-mac',
-    { xPercent: -50, yPercent: -50, x: '0vw', y: '-2vh', scale: 1.03, duration: 6.0, ease: 'sine.inOut', pointerEvents: 'auto' },
+    { xPercent: -50, yPercent: -50, x: '-1.5vw', y: '-2vh', scale: 1.03, duration: 5.0, ease: 'sine.inOut' },
     48.5
   );
   fallTL.to('.prop-mac',
-    { xPercent: -50, yPercent: -50, x: '0vw', y: '-55vh', scale: 1.8, opacity: 0, duration: 1.5, ease: 'power1.in', pointerEvents: 'none' },
-    54.5
+    { xPercent: -50, yPercent: -50, x: '0vw', y: '-55vh', scale: 1.8, opacity: 0, duration: 1.5, ease: 'power1.in' },
+    53.5
   );
 
   // Calibrated Audio Monitor for 56s timeline
